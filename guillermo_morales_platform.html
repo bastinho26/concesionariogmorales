@@ -1,0 +1,1545 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;800&family=Barlow:wght@300;400;500;600&family=Barlow+Semi+Condensed:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black: #0a0a0a;
+  --white: #f5f3ee;
+  --red: #c8102e;
+  --red-dark: #8c0b1f;
+  --red-glow: rgba(200,16,46,0.15);
+  --gold: #c9a84c;
+  --gold-light: #e8c97a;
+  --gray-900: #111111;
+  --gray-800: #1c1c1e;
+  --gray-700: #2a2a2d;
+  --gray-600: #3a3a3d;
+  --gray-400: #6b6b6e;
+  --gray-200: #aeaeae;
+  --gray-100: #d4d4d4;
+  --font-display: 'Barlow Condensed', sans-serif;
+  --font-body: 'Barlow', sans-serif;
+  --font-semi: 'Barlow Semi Condensed', sans-serif;
+}
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 14px;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ─── NAV ─── */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  height: 64px;
+  background: rgba(10,10,10,0.97);
+  border-bottom: 1px solid var(--gray-700);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(8px);
+}
+.nav-logo {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.nav-logo .brand {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--white);
+}
+.nav-logo .brand em {
+  color: var(--red);
+  font-style: normal;
+}
+.nav-logo .tagline {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  font-weight: 400;
+}
+.nav-links {
+  display: flex;
+  gap: 4px;
+  list-style: none;
+}
+.nav-links a {
+  display: block;
+  padding: 6px 14px;
+  font-family: var(--font-semi);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--gray-200);
+  text-decoration: none;
+  border-radius: 4px;
+  transition: color 0.18s, background 0.18s;
+  cursor: pointer;
+}
+.nav-links a:hover { color: var(--white); background: var(--gray-700); }
+.nav-links a.active { color: var(--gold); }
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.btn-nav {
+  padding: 7px 18px;
+  font-family: var(--font-semi);
+  font-size: 12px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.18s;
+  border: 1px solid transparent;
+}
+.btn-ghost { background: transparent; border-color: var(--gray-600); color: var(--gray-200); }
+.btn-ghost:hover { border-color: var(--gray-400); color: var(--white); }
+.btn-primary { background: var(--red); border-color: var(--red); color: #fff; }
+.btn-primary:hover { background: var(--red-dark); }
+
+/* ─── VIEWS ─── */
+.view { display: none; animation: fadeIn 0.25s ease; }
+.view.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* ─── HERO ─── */
+.hero {
+  position: relative;
+  height: 520px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--gray-900);
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse 60% 60% at 80% 50%, rgba(200,16,46,0.12) 0%, transparent 70%),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 80px,
+      rgba(255,255,255,0.012) 80px,
+      rgba(255,255,255,0.012) 81px
+    );
+}
+.hero-stripe {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 5px;
+  background: var(--red);
+}
+.hero-content {
+  position: relative;
+  padding: 0 56px;
+  max-width: 620px;
+}
+.hero-eyebrow {
+  font-family: var(--font-semi);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--red);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: 72px;
+  font-weight: 800;
+  line-height: 0.94;
+  letter-spacing: -0.01em;
+  margin-bottom: 20px;
+}
+.hero-title span { color: var(--gold); }
+.hero-sub {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--gray-200);
+  max-width: 420px;
+  margin-bottom: 32px;
+}
+.hero-ctas {
+  display: flex;
+  gap: 12px;
+}
+.btn-lg {
+  padding: 13px 28px;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.18s;
+  border: 1px solid transparent;
+}
+.btn-red { background: var(--red); color: #fff; }
+.btn-red:hover { background: var(--red-dark); transform: translateY(-1px); }
+.btn-outline { background: transparent; border-color: var(--gray-600); color: var(--white); }
+.btn-outline:hover { border-color: var(--white); }
+.hero-badge {
+  position: absolute;
+  right: 56px;
+  bottom: 40px;
+  text-align: center;
+}
+.hero-badge .num {
+  font-family: var(--font-display);
+  font-size: 60px;
+  font-weight: 800;
+  color: var(--red);
+  line-height: 1;
+}
+.hero-badge .lbl {
+  font-family: var(--font-semi);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+}
+
+/* ─── STATS BAR ─── */
+.stats-bar {
+  background: var(--gray-800);
+  border-top: 1px solid var(--gray-700);
+  border-bottom: 1px solid var(--gray-700);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.stat-item {
+  padding: 20px 32px;
+  border-right: 1px solid var(--gray-700);
+}
+.stat-item:last-child { border-right: none; }
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1;
+}
+.stat-num em { color: var(--gold); font-style: normal; }
+.stat-label {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  margin-top: 4px;
+}
+
+/* ─── MODULES GRID ─── */
+.section {
+  padding: 48px 40px;
+}
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.section-line {
+  flex: 1;
+  height: 1px;
+  background: var(--gray-700);
+}
+.section-sub {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--red);
+  font-weight: 600;
+}
+
+.modules-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+}
+.module-card {
+  background: var(--gray-800);
+  padding: 28px 28px;
+  cursor: pointer;
+  transition: background 0.18s;
+  position: relative;
+  overflow: hidden;
+}
+.module-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--red);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.22s;
+}
+.module-card:hover { background: var(--gray-700); }
+.module-card:hover::before { transform: scaleY(1); }
+.module-icon {
+  width: 42px;
+  height: 42px;
+  background: var(--red-glow);
+  border: 1px solid rgba(200,16,46,0.3);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+  font-size: 20px;
+  color: var(--red);
+}
+.module-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.module-desc {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--gray-200);
+  margin-bottom: 16px;
+}
+.module-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.tag {
+  padding: 3px 10px;
+  border-radius: 2px;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  background: var(--gray-700);
+  color: var(--gray-200);
+  font-family: var(--font-semi);
+}
+.tag.red { background: rgba(200,16,46,0.2); color: #ff6b7a; }
+.tag.gold { background: rgba(201,168,76,0.15); color: var(--gold-light); }
+.tag.blue { background: rgba(59,130,246,0.15); color: #93c5fd; }
+.tag.green { background: rgba(34,197,94,0.15); color: #86efac; }
+
+/* ─── AUTH VIEW ─── */
+.auth-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: calc(100vh - 64px);
+}
+.auth-panel {
+  padding: 56px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.auth-panel.dark { background: var(--gray-900); }
+.auth-panel.light { background: var(--gray-800); border-left: 1px solid var(--gray-700); }
+.auth-form-title {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.auth-form-sub {
+  font-size: 13px;
+  color: var(--gray-400);
+  margin-bottom: 32px;
+}
+.form-group { margin-bottom: 18px; }
+.form-label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--gray-400);
+  margin-bottom: 7px;
+  font-family: var(--font-semi);
+}
+.form-input {
+  width: 100%;
+  padding: 11px 14px;
+  background: var(--gray-700);
+  border: 1px solid var(--gray-600);
+  border-radius: 4px;
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.16s;
+}
+.form-input:focus { border-color: var(--red); }
+.form-input::placeholder { color: var(--gray-400); }
+.form-select {
+  width: 100%;
+  padding: 11px 14px;
+  background: var(--gray-700);
+  border: 1px solid var(--gray-600);
+  border-radius: 4px;
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 14px;
+  outline: none;
+  cursor: pointer;
+}
+.btn-full {
+  width: 100%;
+  padding: 13px;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.18s;
+  border: none;
+}
+.btn-full.red { background: var(--red); color: #fff; }
+.btn-full.red:hover { background: var(--red-dark); }
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 22px 0;
+  color: var(--gray-600);
+  font-size: 12px;
+}
+.divider::before, .divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--gray-700);
+}
+.role-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.role-card {
+  padding: 14px;
+  background: var(--gray-700);
+  border: 1.5px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.16s;
+  text-align: center;
+}
+.role-card.selected { border-color: var(--red); background: rgba(200,16,46,0.1); }
+.role-card i { font-size: 22px; display: block; margin-bottom: 6px; }
+.role-card .role-name { font-size: 12px; font-weight: 600; font-family: var(--font-semi); text-transform: uppercase; letter-spacing: 0.08em; }
+.role-card .role-desc { font-size: 11px; color: var(--gray-400); margin-top: 3px; }
+
+/* ─── DASHBOARD ─── */
+.dashboard-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  min-height: calc(100vh - 64px);
+}
+.sidebar {
+  background: var(--gray-900);
+  border-right: 1px solid var(--gray-700);
+  padding: 24px 0;
+}
+.sidebar-section {
+  padding: 0 16px;
+  margin-bottom: 24px;
+}
+.sidebar-heading {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  font-weight: 600;
+  margin-bottom: 8px;
+  padding: 0 8px;
+}
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-size: 13px;
+  color: var(--gray-200);
+  font-family: var(--font-semi);
+}
+.sidebar-item i { font-size: 17px; color: var(--gray-400); }
+.sidebar-item:hover { background: var(--gray-700); color: var(--white); }
+.sidebar-item:hover i { color: var(--white); }
+.sidebar-item.active { background: rgba(200,16,46,0.12); color: var(--red); }
+.sidebar-item.active i { color: var(--red); }
+.sidebar-badge {
+  margin-left: auto;
+  background: var(--red);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 10px;
+}
+
+.dashboard-main {
+  background: var(--black);
+  padding: 28px 32px;
+  overflow-y: auto;
+}
+.dash-header {
+  margin-bottom: 24px;
+}
+.dash-title {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.dash-title span { color: var(--red); }
+.dash-sub { font-size: 13px; color: var(--gray-400); margin-top: 3px; }
+
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.kpi-card {
+  background: var(--gray-900);
+  border: 1px solid var(--gray-700);
+  border-radius: 6px;
+  padding: 18px;
+}
+.kpi-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-400); margin-bottom: 6px; }
+.kpi-val {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1;
+}
+.kpi-val.red { color: var(--red); }
+.kpi-val.gold { color: var(--gold); }
+.kpi-val.green { color: #4ade80; }
+.kpi-trend { font-size: 11px; color: var(--gray-400); margin-top: 4px; }
+.kpi-trend.up { color: #4ade80; }
+
+/* ─── APPOINTMENT TABLE ─── */
+.table-card {
+  background: var(--gray-900);
+  border: 1px solid var(--gray-700);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.table-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--gray-700);
+}
+.table-card-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.realtime-dot {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #4ade80;
+}
+.realtime-dot::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  background: #4ade80;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(74,222,128,0.4); }
+  50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(74,222,128,0); }
+}
+.data-table { width: 100%; border-collapse: collapse; }
+.data-table th {
+  padding: 10px 16px;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--gray-400);
+  text-align: left;
+  border-bottom: 1px solid var(--gray-700);
+  background: rgba(255,255,255,0.015);
+}
+.data-table td {
+  padding: 12px 16px;
+  font-size: 13px;
+  color: var(--gray-200);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.data-table tr:last-child td { border-bottom: none; }
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 2px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: var(--font-semi);
+}
+.status-badge::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.s-agendada { background: rgba(99,102,241,0.15); color: #a5b4fc; }
+.s-tomada { background: rgba(234,179,8,0.15); color: #fde047; }
+.s-en-curso { background: rgba(249,115,22,0.15); color: #fb923c; }
+.s-realizada { background: rgba(74,222,128,0.15); color: #4ade80; }
+
+.state-btn {
+  padding: 5px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--gray-700);
+  border: 1px solid var(--gray-600);
+  border-radius: 3px;
+  color: var(--white);
+  cursor: pointer;
+  font-family: var(--font-semi);
+  transition: all 0.15s;
+}
+.state-btn:hover { border-color: var(--red); color: var(--red); }
+
+/* ─── INVENTORY ─── */
+.inventory-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.part-card {
+  background: var(--gray-900);
+  border: 1px solid var(--gray-700);
+  border-radius: 6px;
+  padding: 18px;
+  transition: border-color 0.16s;
+}
+.part-card:hover { border-color: var(--gray-600); }
+.part-name {
+  font-family: var(--font-semi);
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.part-sku { font-size: 11px; color: var(--gray-400); letter-spacing: 0.08em; margin-bottom: 12px; }
+.part-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.part-price {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--gold);
+}
+.stock-bar-wrap { margin-bottom: 12px; }
+.stock-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--gray-400);
+  margin-bottom: 5px;
+}
+.stock-bar { height: 4px; background: var(--gray-700); border-radius: 2px; overflow: hidden; }
+.stock-fill { height: 100%; border-radius: 2px; transition: width 0.4s; }
+.stock-high { background: #4ade80; }
+.stock-mid { background: var(--gold); }
+.stock-low { background: var(--red); }
+.btn-cart {
+  width: 100%;
+  padding: 9px;
+  font-family: var(--font-semi);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px solid var(--gray-600);
+  border-radius: 4px;
+  color: var(--white);
+  cursor: pointer;
+  transition: all 0.16s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.btn-cart:hover { background: var(--red); border-color: var(--red); }
+.btn-cart.in-cart { background: rgba(74,222,128,0.12); border-color: #4ade80; color: #4ade80; }
+
+/* ─── CART SIDEBAR ─── */
+.cart-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  z-index: 200;
+  display: none;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+.cart-overlay.open { display: flex; }
+.cart-panel {
+  width: 340px;
+  height: 100vh;
+  background: var(--gray-900);
+  border-left: 1px solid var(--gray-700);
+  display: flex;
+  flex-direction: column;
+  animation: slideIn 0.2s ease;
+}
+@keyframes slideIn { from { transform: translateX(100%); } to { transform: none; } }
+.cart-head {
+  padding: 20px 20px 16px;
+  border-bottom: 1px solid var(--gray-700);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cart-title { font-family: var(--font-display); font-size: 18px; font-weight: 700; text-transform: uppercase; }
+.cart-close { background: none; border: none; color: var(--gray-400); font-size: 22px; cursor: pointer; }
+.cart-items { flex: 1; overflow-y: auto; padding: 16px; }
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--gray-700);
+}
+.cart-item-name { font-size: 13px; font-weight: 500; }
+.cart-item-qty { font-size: 11px; color: var(--gray-400); margin-top: 2px; }
+.cart-item-price { font-family: var(--font-display); font-size: 16px; font-weight: 700; color: var(--gold); }
+.cart-footer {
+  padding: 16px 20px;
+  border-top: 1px solid var(--gray-700);
+}
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+.cart-total .label { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-400); }
+.cart-total .val { font-family: var(--font-display); font-size: 24px; font-weight: 800; color: var(--white); }
+
+/* ─── PAYMENT VIEW ─── */
+.payment-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 24px;
+  padding: 32px 40px;
+  min-height: calc(100vh - 64px);
+}
+.payment-flow {
+  background: var(--gray-900);
+  border: 1px solid var(--gray-700);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.flow-steps {
+  display: flex;
+  background: var(--gray-800);
+  border-bottom: 1px solid var(--gray-700);
+}
+.flow-step {
+  flex: 1;
+  padding: 14px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  font-family: var(--font-semi);
+  border-right: 1px solid var(--gray-700);
+  position: relative;
+  transition: all 0.2s;
+}
+.flow-step:last-child { border-right: none; }
+.flow-step.done { color: #4ade80; }
+.flow-step.active { color: var(--gold); background: rgba(201,168,76,0.07); }
+.flow-step .step-num {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.flow-content { padding: 28px 32px; }
+.transbank-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: #2E3092;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 20px;
+}
+.code-block {
+  background: var(--black);
+  border: 1px solid var(--gray-700);
+  border-radius: 6px;
+  padding: 16px 18px;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: var(--gray-200);
+  margin-bottom: 16px;
+  overflow-x: auto;
+  line-height: 1.7;
+}
+.code-block .c-key { color: #93c5fd; }
+.code-block .c-str { color: #86efac; }
+.code-block .c-num { color: #fde047; }
+.code-block .c-comment { color: var(--gray-400); font-style: italic; }
+
+.order-card {
+  background: var(--gray-900);
+  border: 1px solid var(--gray-700);
+  border-radius: 8px;
+  padding: 24px;
+  align-self: start;
+}
+.order-title { font-family: var(--font-display); font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 18px; }
+.order-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--gray-700);
+  color: var(--gray-200);
+}
+.order-line:last-of-type { border-bottom: none; }
+.order-line .amount { font-family: var(--font-semi); font-weight: 600; color: var(--white); }
+.order-total {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1px solid var(--gray-600);
+  margin-top: 6px;
+}
+.order-total .label { font-size: 13px; font-weight: 600; }
+.order-total .val { font-family: var(--font-display); font-size: 24px; font-weight: 800; color: var(--gold); }
+.card-mock {
+  margin: 20px 0;
+  padding: 18px 20px;
+  background: linear-gradient(135deg, #1c2a4a, #0f1a38);
+  border-radius: 10px;
+  border: 1px solid #2a3f6a;
+  font-family: 'Courier New', monospace;
+}
+.card-chips { display: flex; gap: 6px; margin-bottom: 14px; }
+.chip-gold { width: 32px; height: 24px; background: var(--gold); border-radius: 4px; }
+.chip-nfc { font-size: 20px; color: rgba(255,255,255,0.4); }
+.card-number { font-size: 14px; letter-spacing: 0.22em; color: rgba(255,255,255,0.9); margin-bottom: 10px; }
+.card-meta { display: flex; justify-content: space-between; font-size: 11px; color: rgba(255,255,255,0.5); }
+.visa-logo { font-size: 18px; font-weight: 900; font-style: italic; color: #fff; letter-spacing: 0.04em; }
+</style>
+
+<nav class="nav">
+  <div class="nav-logo">
+    <div class="brand">G<em>M</em> MOTORS</div>
+    <div class="tagline">Concesionario Guillermo Morales</div>
+  </div>
+  <ul class="nav-links">
+    <li><a onclick="showView('home')" id="nav-home" class="active">Inicio</a></li>
+    <li><a onclick="showView('auth')" id="nav-auth">Acceso</a></li>
+    <li><a onclick="showView('dashboard')" id="nav-dashboard">Dashboard</a></li>
+    <li><a onclick="showView('inventory')" id="nav-inventory">Repuestos</a></li>
+    <li><a onclick="showView('payment')" id="nav-payment">Pago</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="btn-nav btn-ghost" onclick="showView('auth')">Iniciar sesión</button>
+    <button class="btn-nav btn-primary" onclick="showView('auth')">Registrarse</button>
+  </div>
+</nav>
+
+<!-- ═══════════ HOME ═══════════ -->
+<div id="view-home" class="view active">
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-stripe"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Concesionario Oficial · Santiago, Chile</div>
+      <h1 class="hero-title">Servicio<br><span>sin igual</span><br>desde 1998</h1>
+      <p class="hero-sub">Plataforma integral de gestión: agendamiento, seguimiento en tiempo real, repuestos originales y pagos con Webpay Transbank.</p>
+      <div class="hero-ctas">
+        <button class="btn-lg btn-red" onclick="showView('auth')">Agendar servicio</button>
+        <button class="btn-lg btn-outline" onclick="showView('inventory')">Ver repuestos</button>
+      </div>
+    </div>
+    <div class="hero-badge">
+      <div class="num">26</div>
+      <div class="lbl">años de experiencia</div>
+    </div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-num">4,<em>800</em></div>❯ git cl❯ git remote -v
+      origin  https://github.com/bastinho26/concesionariogmorales.git (fetch)
+      origin  https://github.com/bastinho26/concesionariogmorales.git (push)
+      ❯ git add .
+      ❯ git commit -m "inicialización del proyecto"
+      On branch main❯ git push
+      error: src refspec refs/heads/main does not match any
+      error: failed to push some refs to 'https://github.com/bastinho26/concesionariogmorales.git'
+      ❯ cd ..
+      ❯ ls -l
+      total 60
+      -rw-r--r-- 1 santinhodev santinhodev   300 may 25 21:29 bastian_morales.iml
+      drwxr-xr-x 1 santinhodev santinhodev     8 may 25 21:58 concesionariogmorales
+      -rw-r--r-- 1 santinhodev santinhodev 56475 may 25 22:03 guillermo_morales_platform.html
+      ❯ git add .
+      fatal: not a git repository (or any parent up to mount point /)
+      Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+      ❯ git remote add origin https://github.com/bastinho26/concesionariogmorales.git
+      fatal: not a git repository (or any parent up to mount point /)
+      Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+      ~/IdeaProjects/bastian_morales ❯
+
+      Initial commit
+
+      nothing to commit (create/copy files and use "git add" to track)
+      ❯ git push
+      error: src refspec refs/heads/main does not match any
+      error: failed to push some refs to 'https://github.com/bastinho26/concesionariogmorales.git'
+      ~/IdeaProjects/bastian_morales/concesionariogmorales main ❯ one https://github.com/bastinho26/concesionariogmorales.git
+      Cloning into 'concesionariogmorales'...
+      warning: You appear to have cloned an empty repository.
+      ❯ git init
+      Initialized empty Git repository in /home/santinhodev/IdeaProjects/bastian_morales/.git/
+      ❯ git checkout -b main
+      Switched to a new branch 'main'
+      ❯ git remote -v
+      ~/IdeaProjects/bastian_morales main* ❯
+      <div class="stat-label">Servicios completados</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num"><em>98</em>%</div>
+      <div class="stat-label">Satisfacción clientes</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">1,<em>200</em>+</div>
+      <div class="stat-label">Repuestos en stock</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num"><em>24</em>h</div>
+      <div class="stat-label">Tiempo respuesta</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-sub">Sistema Integrado</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="modules-grid">
+      <div class="module-card" onclick="showView('auth')">
+        <div class="module-icon"><i class="ti ti-shield-lock" aria-hidden="true"></i></div>
+        <div class="module-title">Autenticación y Roles (RBAC)</div>
+        <div class="module-desc">JWT con refresh tokens, roles Usuario/Admin, sesiones seguras, gestión de perfil y acceso granular por módulo.</div>
+        <div class="module-tags">
+          <span class="tag red">JWT</span><span class="tag">bcrypt</span><span class="tag blue">RBAC</span><span class="tag">PostgreSQL</span>
+        </div>
+      </div>
+      <div class="module-card" onclick="showView('dashboard')">
+        <div class="module-icon"><i class="ti ti-calendar-event" aria-hidden="true"></i></div>
+        <div class="module-title">Agendamiento y Servicio Técnico</div>
+        <div class="module-desc">Reserva de horas sin solapamiento, tracking de estado en tiempo real con WebSockets y dashboard de administración.</div>
+        <div class="module-tags">
+          <span class="tag green">WebSockets</span><span class="tag red">Tiempo Real</span><span class="tag">Socket.io</span>
+        </div>
+      </div>
+      <div class="module-card" onclick="showView('inventory')">
+        <div class="module-icon"><i class="ti ti-package" aria-hidden="true"></i></div>
+        <div class="module-title">Inventario y Tienda de Repuestos</div>
+        <div class="module-desc">Catálogo con control de stock, prevención de race conditions con transacciones atómicas y carrito integrado.</div>
+        <div class="module-tags">
+          <span class="tag gold">Stock Control</span><span class="tag">Redis Lock</span><span class="tag blue">Carrito</span>
+        </div>
+      </div>
+      <div class="module-card" onclick="showView('payment')">
+        <div class="module-icon"><i class="ti ti-credit-card" aria-hidden="true"></i></div>
+        <div class="module-title">Pasarela de Pagos Transbank</div>
+        <div class="module-desc">Integración Webpay Plus para Chile: flujo completo de transacción, tokenización, confirmación y manejo de errores.</div>
+        <div class="module-tags">
+          <span class="tag red">Webpay Plus</span><span class="tag">Transbank</span><span class="tag gold">Visa/MC</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ AUTH ═══════════ -->
+<div id="view-auth" class="view">
+  <div class="auth-layout">
+    <div class="auth-panel dark">
+      <div style="margin-bottom:32px">
+        <div class="hero-eyebrow" style="margin-bottom:8px">Portal de acceso</div>
+        <div class="auth-form-title">Iniciar sesión</div>
+        <div class="auth-form-sub">Ingresa a tu cuenta GM Motors</div>
+      </div>
+      <div class="role-cards" style="margin-bottom:22px">
+        <div class="role-card selected" id="role-user" onclick="selectRole('user')">
+          <i class="ti ti-user" aria-hidden="true"></i>
+          <div class="role-name">Usuario</div>
+          <div class="role-desc">Clientes / propietarios</div>
+        </div>
+        <div class="role-card" id="role-admin" onclick="selectRole('admin')">
+          <i class="ti ti-settings" aria-hidden="true"></i>
+          <div class="role-name">Administrador</div>
+          <div class="role-desc">Personal del taller</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Correo electrónico</label>
+        <input class="form-input" type="email" placeholder="correo@ejemplo.cl">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Contraseña</label>
+        <input class="form-input" type="password" placeholder="••••••••">
+      </div>
+      <button class="btn-full red" onclick="showView('dashboard')">Entrar al sistema</button>
+      <div class="divider">o</div>
+      <div style="font-size:13px;color:var(--gray-400);text-align:center">¿Sin cuenta? <a onclick="switchToRegister()" style="color:var(--gold);cursor:pointer;text-decoration:underline">Regístrate aquí</a></div>
+
+      <div style="margin-top:32px;padding:16px;background:var(--gray-800);border-radius:6px;border:1px solid var(--gray-700)">
+        <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray-400);margin-bottom:10px;font-weight:600">Seguridad JWT</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--gray-200)"><i class="ti ti-check" style="color:#4ade80;font-size:14px" aria-hidden="true"></i> Access token 15 min (HS256)</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--gray-200)"><i class="ti ti-check" style="color:#4ade80;font-size:14px" aria-hidden="true"></i> Refresh token 7 días (httpOnly)</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--gray-200)"><i class="ti ti-check" style="color:#4ade80;font-size:14px" aria-hidden="true"></i> Bcrypt 12 rounds + salt</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--gray-200)"><i class="ti ti-check" style="color:#4ade80;font-size:14px" aria-hidden="true"></i> Middleware RBAC por ruta</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="auth-panel light">
+      <div class="auth-form-title">Crear cuenta</div>
+      <div class="auth-form-sub">Únete y gestiona tu vehículo</div>
+      <div class="form-group">
+        <label class="form-label">Nombre completo</label>
+        <input class="form-input" type="text" placeholder="Juan Pérez García">
+      </div>
+      <div class="form-group">
+        <label class="form-label">RUT</label>
+        <input class="form-input" type="text" placeholder="12.345.678-9">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Correo electrónico</label>
+        <input class="form-input" type="email" placeholder="correo@ejemplo.cl">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Teléfono</label>
+        <input class="form-input" type="tel" placeholder="+56 9 1234 5678">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Patente del vehículo</label>
+        <input class="form-input" type="text" placeholder="AB-CD-12">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Marca y modelo</label>
+        <select class="form-select">
+          <option>Toyota Corolla 2022</option>
+          <option>Chevrolet Sail 2021</option>
+          <option>Kia Cerato 2023</option>
+          <option>Hyundai Accent 2022</option>
+          <option>Otro vehículo</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Contraseña</label>
+        <input class="form-input" type="password" placeholder="Mínimo 8 caracteres">
+      </div>
+      <button class="btn-full red">Crear mi cuenta</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ DASHBOARD ═══════════ -->
+<div id="view-dashboard" class="view">
+  <div class="dashboard-layout">
+    <div class="sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-heading">Principal</div>
+        <div class="sidebar-item active"><i class="ti ti-layout-dashboard" aria-hidden="true"></i> Dashboard</div>
+        <div class="sidebar-item"><i class="ti ti-calendar" aria-hidden="true"></i> Agendamientos <span class="sidebar-badge">4</span></div>
+        <div class="sidebar-item"><i class="ti ti-car" aria-hidden="true"></i> Mis vehículos</div>
+        <div class="sidebar-item"><i class="ti ti-clock-hour-3" aria-hidden="true"></i> Estado en vivo</div>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-heading">Admin</div>
+        <div class="sidebar-item"><i class="ti ti-users" aria-hidden="true"></i> Clientes</div>
+        <div class="sidebar-item"><i class="ti ti-package" aria-hidden="true"></i> Inventario</div>
+        <div class="sidebar-item"><i class="ti ti-chart-bar" aria-hidden="true"></i> Reportes</div>
+        <div class="sidebar-item"><i class="ti ti-settings" aria-hidden="true"></i> Configuración</div>
+      </div>
+      <div class="sidebar-section">
+        <div style="padding:12px 8px;border:1px solid var(--gray-700);border-radius:6px;background:rgba(74,222,128,0.06)">
+          <div class="realtime-dot" style="font-size:12px;margin-bottom:6px">WebSocket activo</div>
+          <div style="font-size:11px;color:var(--gray-400)">Socket.io · 3 conexiones<br>Sala: servicios_2024</div>
+        </div>
+      </div>
+    </div>
+    <div class="dashboard-main">
+      <div class="dash-header">
+        <div class="dash-title">Dashboard <span>Administrador</span></div>
+        <div class="dash-sub">Lunes 25 de mayo, 2026 · Taller principal Santiago</div>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-label">Servicios hoy</div>
+          <div class="kpi-val red">12</div>
+          <div class="kpi-trend up">+3 vs ayer</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">En curso ahora</div>
+          <div class="kpi-val" style="color:#fb923c">4</div>
+          <div class="kpi-trend">Actualizado en vivo</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Ingresos mes</div>
+          <div class="kpi-val gold">$8.4M</div>
+          <div class="kpi-trend up">+12% vs anterior</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Repuestos vendidos</div>
+          <div class="kpi-val green">87</div>
+          <div class="kpi-trend up">Esta semana</div>
+        </div>
+      </div>
+
+      <div class="table-card">
+        <div class="table-card-header">
+          <div class="table-card-title">Órdenes de servicio — tiempo real</div>
+          <div class="realtime-dot">Actualización en vivo</div>
+        </div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>N° Orden</th>
+              <th>Cliente</th>
+              <th>Vehículo / Patente</th>
+              <th>Servicio</th>
+              <th>Hora</th>
+              <th>Estado</th>
+              <th>Acción Admin</th>
+            </tr>
+          </thead>
+          <tbody id="orders-tbody">
+            <tr>
+              <td>#2024-0187</td><td>María González</td><td>Toyota Corolla · AB·CD·12</td><td>Cambio aceite + filtros</td><td>09:00</td>
+              <td><span class="status-badge s-realizada">Realizada</span></td>
+              <td><button class="state-btn" disabled style="opacity:0.4">Completada</button></td>
+            </tr>
+            <tr>
+              <td>#2024-0188</td><td>Carlos Muñoz</td><td>Kia Cerato · EF·GH·34</td><td>Revisión frenos</td><td>10:30</td>
+              <td><span class="status-badge s-en-curso" id="s-188">En Curso</span></td>
+              <td><button class="state-btn" onclick="advanceState('188','s-188','en-curso')">→ Realizada</button></td>
+            </tr>
+            <tr>
+              <td>#2024-0189</td><td>Paula Araya</td><td>Hyundai Accent · IJ·KL·56</td><td>Alineación y balanceo</td><td>11:00</td>
+              <td><span class="status-badge s-tomada" id="s-189">Tomada</span></td>
+              <td><button class="state-btn" onclick="advanceState('189','s-189','tomada')">→ En Curso</button></td>
+            </tr>
+            <tr>
+              <td>#2024-0190</td><td>Roberto Lara</td><td>Chevrolet Sail · MN·OP·78</td><td>Diagnóstico computadora</td><td>12:00</td>
+              <td><span class="status-badge s-agendada" id="s-190">Agendada</span></td>
+              <td><button class="state-btn" onclick="advanceState('190','s-190','agendada')">→ Tomada</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="table-card">
+        <div class="table-card-header">
+          <div class="table-card-title">Flujo de estados — arquitectura WebSocket</div>
+        </div>
+        <div style="padding:20px 24px">
+          <div style="display:flex;align-items:center;gap:0;margin-bottom:18px">
+            <div style="padding:10px 16px;background:rgba(99,102,241,0.15);border:1px solid rgba(99,102,241,0.3);border-radius:6px 0 0 6px;font-size:12px;font-weight:600;color:#a5b4fc;font-family:var(--font-semi)">Agendada</div>
+            <div style="padding:10px 8px;color:var(--gray-400);font-size:12px;border-top:1px solid var(--gray-700);border-bottom:1px solid var(--gray-700)">→</div>
+            <div style="padding:10px 16px;background:rgba(234,179,8,0.15);border:1px solid rgba(234,179,8,0.3);font-size:12px;font-weight:600;color:#fde047;font-family:var(--font-semi)">Tomada</div>
+            <div style="padding:10px 8px;color:var(--gray-400);font-size:12px;border-top:1px solid var(--gray-700);border-bottom:1px solid var(--gray-700)">→</div>
+            <div style="padding:10px 16px;background:rgba(249,115,22,0.15);border:1px solid rgba(249,115,22,0.3);font-size:12px;font-weight:600;color:#fb923c;font-family:var(--font-semi)">En Curso</div>
+            <div style="padding:10px 8px;color:var(--gray-400);font-size:12px;border-top:1px solid var(--gray-700);border-bottom:1px solid var(--gray-700)">→</div>
+            <div style="padding:10px 16px;background:rgba(74,222,128,0.15);border:1px solid rgba(74,222,128,0.3);border-radius:0 6px 6px 0;font-size:12px;font-weight:600;color:#4ade80;font-family:var(--font-semi)">Realizada</div>
+          </div>
+          <div class="code-block">
+<span class="c-comment">// Backend: Socket.io — emitir cambio de estado</span>
+<span class="c-key">socket</span>.<span class="c-key">to</span>(<span class="c-str">`orden_${orderId}`</span>).<span class="c-key">emit</span>(<span class="c-str">'estado_actualizado'</span>, {
+  orderId: <span class="c-num">2024_0189</span>,
+  nuevoEstado: <span class="c-str">'en_curso'</span>,
+  updatedAt: <span class="c-key">new</span> Date().<span class="c-key">toISOString</span>()
+});
+<span class="c-comment">// Frontend: escuchar y actualizar UI en tiempo real</span>
+<span class="c-key">socket</span>.<span class="c-key">on</span>(<span class="c-str">'estado_actualizado'</span>, ({ orderId, nuevoEstado }) => {
+  <span class="c-key">setOrdenEstado</span>(orderId, nuevoEstado); <span class="c-comment">// React state</span>
+});</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ INVENTORY ═══════════ -->
+<div id="view-inventory" class="view">
+  <div style="padding:28px 40px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px">
+      <div>
+        <div class="dash-title">Repuestos <span style="color:var(--gold)">& Accesorios</span></div>
+        <div class="dash-sub">Control de stock en tiempo real · Transacciones atómicas con PostgreSQL</div>
+      </div>
+      <button class="btn-nav btn-primary" onclick="toggleCart()">
+        <i class="ti ti-shopping-cart" aria-hidden="true"></i> Carrito <span id="cart-count" style="margin-left:4px;background:rgba(255,255,255,0.25);border-radius:10px;padding:1px 7px">0</span>
+      </button>
+    </div>
+    <div style="display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap">
+      <button class="btn-nav btn-ghost" style="border-color:var(--red);color:var(--red)">Todos</button>
+      <button class="btn-nav btn-ghost">Motor</button>
+      <button class="btn-nav btn-ghost">Frenos</button>
+      <button class="btn-nav btn-ghost">Suspensión</button>
+      <button class="btn-nav btn-ghost">Electrónica</button>
+      <button class="btn-nav btn-ghost">Lubricantes</button>
+    </div>
+    <div class="inventory-grid" id="parts-grid"></div>
+  </div>
+
+  <!-- CART -->
+  <div class="cart-overlay" id="cart-overlay" onclick="closeCartOutside(event)">
+    <div class="cart-panel" id="cart-panel">
+      <div class="cart-head">
+        <div class="cart-title">Carrito</div>
+        <button class="cart-close" onclick="toggleCart()"><i class="ti ti-x" aria-hidden="true"></i></button>
+      </div>
+      <div class="cart-items" id="cart-items-list">
+        <div style="color:var(--gray-400);font-size:13px;text-align:center;padding:32px 0">Sin productos aún</div>
+      </div>
+      <div class="cart-footer">
+        <div class="cart-total">
+          <div class="label">Total a pagar</div>
+          <div class="val" id="cart-total-val">$0</div>
+        </div>
+        <button class="btn-full red" onclick="goToPayment()">Pagar con Webpay</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ PAYMENT ═══════════ -->
+<div id="view-payment" class="view">
+  <div class="payment-layout">
+    <div>
+      <div style="margin-bottom:20px">
+        <div class="dash-title">Pasarela de <span style="color:var(--gold)">Pagos</span></div>
+        <div class="dash-sub">Integración Webpay Plus · Transbank Chile · Visa y Mastercard</div>
+      </div>
+
+      <div class="payment-flow">
+        <div class="flow-steps">
+          <div class="flow-step done" id="step1"><span class="step-num">01</span>Iniciar</div>
+          <div class="flow-step active" id="step2"><span class="step-num">02</span>Redirigir</div>
+          <div class="flow-step" id="step3"><span class="step-num">03</span>Token</div>
+          <div class="flow-step" id="step4"><span class="step-num">04</span>Confirmar</div>
+          <div class="flow-step" id="step5"><span class="step-num">05</span>Resultado</div>
+        </div>
+        <div class="flow-content">
+          <div class="transbank-logo">
+            <i class="ti ti-shield-check" aria-hidden="true"></i> Webpay Plus · Transbank
+          </div>
+
+          <div style="font-size:13px;color:var(--gray-400);margin-bottom:12px;text-transform:uppercase;letter-spacing:0.1em;font-weight:600">Paso 2 — Redirección segura a Transbank</div>
+
+          <div class="code-block">
+<span class="c-comment">// 1. INICIAR transacción (POST /api/webpay/init)</span>
+<span class="c-key">const</span> { token, url } = <span class="c-key">await</span> WebpayPlus.Transaction.<span class="c-key">create</span>({
+  buyOrder: <span class="c-str">"GM-2024-0190"</span>,
+  sessionId:  <span class="c-str">"sess_abc123"</span>,
+  amount: <span class="c-num">84500</span>,         <span class="c-comment">// CLP — sin decimales</span>
+  returnUrl:  <span class="c-str">"https://gmotors.cl/webpay/return"</span>
+});
+<span class="c-comment">// → token: "01ab45...", url: "https://webpay3g.transbank.cl/..."</span>
+
+<span class="c-comment">// 2. REDIRIGIR al portal de Transbank (formulario POST)</span>
+<span class="c-str">`&lt;form action="${url}" method="POST"&gt;
+  &lt;input name="token_ws" value="${token}"&gt;
+  &lt;script&gt;document.forms[0].submit()&lt;/script&gt;
+&lt;/form&gt;`</span>
+
+<span class="c-comment">// 3. RECIBIR token de retorno (GET /webpay/return?token_ws=...)</span>
+<span class="c-key">const</span> tokenWs = req.query.token_ws; <span class="c-comment">// o req.form_params</span>
+
+<span class="c-comment">// 4. CONFIRMAR transacción (obligatorio dentro de 30s)</span>
+<span class="c-key">const</span> response = <span class="c-key">await</span> WebpayPlus.Transaction.<span class="c-key">commit</span>(tokenWs);
+<span class="c-comment">// response.responseCode === 0 → APROBADA</span>
+<span class="c-comment">// response.responseCode !== 0 → RECHAZADA / ANULADA</span>
+
+<span class="c-comment">// 5. ACTUALIZAR BD y notificar usuario</span>
+<span class="c-key">if</span> (response.responseCode === <span class="c-num">0</span>) {
+  <span class="c-key">await</span> db.orders.<span class="c-key">update</span>({ status: <span class="c-str">"PAGADA"</span>, authCode: response.authorizationCode });
+  <span class="c-key">await</span> sendConfirmationEmail(response);
+} <span class="c-key">else</span> {
+  <span class="c-key">await</span> db.orders.<span class="c-key">update</span>({ status: <span class="c-str">"RECHAZADA"</span> });
+}
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div style="padding:14px;background:rgba(74,222,128,0.07);border:1px solid rgba(74,222,128,0.2);border-radius:6px">
+              <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#4ade80;font-weight:600;margin-bottom:8px">Pago aprobado</div>
+              <div style="font-size:12px;color:var(--gray-200);line-height:1.5">responseCode: 0<br>authorizationCode: "ABC123"<br>→ Orden marcada PAGADA<br>→ Email de confirmación enviado</div>
+            </div>
+            <div style="padding:14px;background:rgba(200,16,46,0.07);border:1px solid rgba(200,16,46,0.2);border-radius:6px">
+              <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--red);font-weight:600;margin-bottom:8px">Pago rechazado / error</div>
+              <div style="font-size:12px;color:var(--gray-200);line-height:1.5">responseCode: -1, -2, etc.<br>→ Stock se revierte (+1)<br>→ Orden marcada RECHAZADA<br>→ Notificar al usuario</div>
+            </div>
+          </div>
+
+          <div style="margin-top:16px;padding:14px 16px;background:var(--gray-800);border:1px solid var(--gray-700);border-radius:6px">
+            <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:8px">Ambientes Transbank</div>
+            <div style="display:flex;gap:20px;font-size:12px;color:var(--gray-200)">
+              <span><i class="ti ti-circle-check" style="color:#4ade80" aria-hidden="true"></i> Integración: webpay3gint.transbank.cl</span>
+              <span><i class="ti ti-circle-check" style="color:var(--gold)" aria-hidden="true"></i> Producción: webpay3g.transbank.cl</span>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:10px;margin-top:16px">
+            <button class="btn-nav btn-primary" onclick="advancePayStep()">Simular siguiente paso →</button>
+            <button class="btn-nav btn-ghost" onclick="resetPaySteps()">Reiniciar flujo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="order-card">
+        <div class="order-title">Resumen del pedido</div>
+        <div class="order-line"><span>Filtro aceite Toyota</span><span class="amount">$12.500</span></div>
+        <div class="order-line"><span>Kit frenos delanteros</span><span class="amount">$48.900</span></div>
+        <div class="order-line"><span>Aceite 5W-30 (4L)</span><span class="amount">$18.200</span></div>
+        <div class="order-line"><span>Envío estándar</span><span class="amount">$4.900</span></div>
+        <div class="order-total">
+          <span class="label">Total CLP</span>
+          <span class="val">$84.500</span>
+        </div>
+        <div style="margin-top:16px">
+          <div class="card-mock">
+            <div class="card-chips">
+              <div class="chip-gold"></div>
+              <i class="ti ti-wifi chip-nfc" aria-hidden="true"></i>
+            </div>
+            <div class="card-number">4012 •••• •••• 3456</div>
+            <div class="card-meta">
+              <div><div style="font-size:9px;margin-bottom:2px;opacity:0.5">VÁLIDA HASTA</div>12/27</div>
+              <div class="visa-logo">VISA</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:10px;justify-content:center">
+            <div style="padding:5px 12px;background:rgba(30,58,138,0.3);border:1px solid rgba(30,58,138,0.5);border-radius:4px;font-size:11px;font-weight:700;color:#93c5fd">VISA</div>
+            <div style="padding:5px 12px;background:rgba(120,53,15,0.3);border:1px solid rgba(180,83,9,0.4);border-radius:4px;font-size:11px;font-weight:700;color:#fbbf24">MASTERCARD</div>
+            <div style="padding:5px 12px;background:rgba(30,58,138,0.2);border:1px solid rgba(30,58,138,0.3);border-radius:4px;font-size:11px;font-weight:700;color:#93c5fd">WEBPAY</div>
+          </div>
+          <div style="margin-top:14px;text-align:center;font-size:11px;color:var(--gray-400)"><i class="ti ti-lock" aria-hidden="true" style="font-size:12px;margin-right:4px"></i>Cifrado SSL 256-bit · Procesado por Transbank</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── NAVIGATION ───
+const views = ['home','auth','dashboard','inventory','payment'];
+function showView(v) {
+  views.forEach(id => {
+    document.getElementById('view-'+id).classList.toggle('active', id===v);
+    const n = document.getElementById('nav-'+id);
+    if (n) n.classList.toggle('active', id===v);
+  });
+  if (v === 'inventory') renderParts();
+}
+
+// ─── AUTH ───
+function selectRole(r) {
+  document.getElementById('role-user').classList.toggle('selected', r==='user');
+  document.getElementById('role-admin').classList.toggle('selected', r==='admin');
+}
+function switchToRegister() {}
+
+// ─── SERVICE STATES ───
+const stateMap = {
+  'agendada': { next: 'tomada', cls: 's-tomada', label: 'Tomada', btnLabel: '→ En Curso' },
+  'tomada': { next: 'en-curso', cls: 's-en-curso', label: 'En Curso', btnLabel: '→ Realizada' },
+  'en-curso': { next: 'realizada', cls: 's-realizada', label: 'Realizada', btnLabel: 'Completada' }
+};
+function advanceState(id, badgeId, currentState) {
+  const m = stateMap[currentState];
+  if (!m) return;
+  const badge = document.getElementById(badgeId);
+  badge.className = 'status-badge ' + m.cls;
+  badge.textContent = m.label;
+  const btn = badge.closest('tr').querySelector('.state-btn');
+  if (m.next === 'realizada') {
+    btn.textContent = 'Completada';
+    btn.disabled = true;
+    btn.style.opacity = '0.4';
+  } else {
+    btn.textContent = stateMap[m.next]?.btnLabel || '';
+    btn.setAttribute('onclick', `advanceState('${id}','${badgeId}','${m.next}')`);
+  }
+}
+
+// ─── INVENTORY & CART ───
+const parts = [
+  { id:1, name:'Filtro de aceite Toyota', sku:'FLT-OIL-TOY-001', cat:'Motor', price:12500, stock:45, maxStock:50 },
+  { id:2, name:'Kit frenos delanteros', sku:'BRK-FRT-UNI-007', cat:'Frenos', price:48900, stock:8, maxStock:20 },
+  { id:3, name:'Aceite 5W-30 Sintético 4L', sku:'OIL-5W30-SYN-4L', cat:'Lubricantes', price:18200, stock:32, maxStock:40 },
+  { id:4, name:'Amortiguador trasero KYB', sku:'SUS-KYB-RR-334', cat:'Suspensión', price:67300, stock:3, maxStock:10 },
+  { id:5, name:'Sensor ABS trasero', sku:'ELC-ABS-SEN-T', cat:'Electrónica', price:29800, stock:0, maxStock:15 },
+  { id:6, name:'Pastillas de freno Bosch', sku:'BRK-BSH-PAD-F', cat:'Frenos', price:24600, stock:22, maxStock:30 },
+];
+let cart = {};
+function renderParts() {
+  const g = document.getElementById('parts-grid');
+  g.innerHTML = parts.map(p => {
+    const pct = Math.round((p.stock/p.maxStock)*100);
+    const cls = pct > 50 ? 'stock-high' : pct > 20 ? 'stock-mid' : 'stock-low';
+    const inC = cart[p.id];
+    const outOfStock = p.stock === 0;
+    return `<div class="part-card">
+      <div class="part-name">${p.name}</div>
+      <div class="part-sku">${p.sku} · ${p.cat}</div>
+      <div class="part-meta">
+        <div class="part-price">$${p.price.toLocaleString('es-CL')}</div>
+        <span class="tag ${outOfStock?'red':''}">${outOfStock?'Sin stock':'En stock'}</span>
+      </div>
+      <div class="stock-bar-wrap">
+        <div class="stock-label"><span>Stock</span><span>${p.stock}/${p.maxStock}</span></div>
+        <div class="stock-bar"><div class="stock-fill ${cls}" style="width:${pct}%"></div></div>
+      </div>
+      <button class="btn-cart ${inC?'in-cart':''}" onclick="addToCart(${p.id})" ${outOfStock?'disabled style="opacity:0.4"':''}>
+        <i class="ti ti-${inC?'check':'shopping-cart'}" aria-hidden="true"></i>
+        ${outOfStock?'Sin stock':inC?'Agregado':'Agregar al carrito'}
+      </button>
+    </div>`;
+  }).join('');
+}
+function addToCart(id) {
+  const p = parts.find(x=>x.id===id);
+  if (!p || p.stock===0) return;
+  cart[id] = (cart[id]||0)+1;
+  updateCartUI();
+  renderParts();
+}
+function updateCartUI() {
+  const items = Object.entries(cart).filter(([,q])=>q>0);
+  document.getElementById('cart-count').textContent = items.reduce((a,[,q])=>a+q,0);
+  const list = document.getElementById('cart-items-list');
+  if (!items.length) { list.innerHTML='<div style="color:var(--gray-400);font-size:13px;text-align:center;padding:32px 0">Sin productos aún</div>'; return; }
+  let total = 0;
+  list.innerHTML = items.map(([id,qty])=>{
+    const p = parts.find(x=>x.id==id);
+    const sub = p.price*qty;
+    total += sub;
+    return `<div class="cart-item">
+      <div><div class="cart-item-name">${p.name}</div><div class="cart-item-qty">x${qty}</div></div>
+      <div class="cart-item-price">$${sub.toLocaleString('es-CL')}</div>
+    </div>`;
+  }).join('');
+  document.getElementById('cart-total-val').textContent = '$'+total.toLocaleString('es-CL');
+}
+function toggleCart() {
+  document.getElementById('cart-overlay').classList.toggle('open');
+}
+function closeCartOutside(e) {
+  if (e.target===document.getElementById('cart-overlay')) toggleCart();
+}
+function goToPayment() {
+  document.getElementById('cart-overlay').classList.remove('open');
+  showView('payment');
+}
+
+// ─── PAYMENT STEPS ───
+let currentStep = 2;
+function advancePayStep() {
+  if (currentStep >= 5) return;
+  currentStep++;
+  for (let i=1;i<=5;i++) {
+    const el = document.getElementById('step'+i);
+    el.className = 'flow-step' + (i<currentStep?' done':i===currentStep?' active':'');
+  }
+}
+function resetPaySteps() {
+  currentStep = 1;
+  for (let i=1;i<=5;i++) {
+    document.getElementById('step'+i).className = 'flow-step'+(i===1?' active':'');
+  }
+  currentStep = 2;
+  document.getElementById('step1').className = 'flow-step done';
+  document.getElementById('step2').className = 'flow-step active';
+}
+</script>
